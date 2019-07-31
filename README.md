@@ -160,5 +160,34 @@ yum info libvirt
 * Terraform - v0.11.10
 * terraform-provider-libvirt - 0.5.1.CentOS_7.x86_64
 
-# If all the necessary components and dependencies are installed, you can start writing the infrastructure as code!
+## If all the necessary components and dependencies are installed, you can start writing the infrastructure as code!
 
+Initialize a Terraform working directory
+
+```
+terraform init
+```
+
+Generate and show Terraform execution plan
+
+```
+terraform plan
+```
+
+Then build your Terraform infrastructure
+
+```
+terraform apply
+```
+
+Check your infrastructure use virsh
+
+```
+virsh list --all
+``` 
+
+You can destroy your Terraform infrastructure
+
+```
+terraform destroy
+```
