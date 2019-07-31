@@ -7,3 +7,6 @@
 
 # .tfvars files
 *.tfvars
+
+# .DS_Store file OSX trash
+.DS_Store
