@@ -6,7 +6,7 @@ A small project describing how to use [terraform](https://www.terraform.io/) to 
 
 I am writing this guide 08.2019, versions of some components could not coincide with the current ones. All commands run as root.
 
-###Operating system
+### Operating system
 
 For this project, I used CentOS operating system on hardware and virtual machines.
 
@@ -160,7 +160,9 @@ yum info libvirt
 * Terraform - v0.11.10
 * terraform-provider-libvirt - 0.5.1.CentOS_7.x86_64
 
-## If all the necessary components and dependencies are installed, you can start writing the infrastructure as code!
+### If all the necessary components and dependencies are installed, you can start writing the infrastructure as code!
+
+## Terraform
 
 Initialize a Terraform working directory
 
@@ -191,3 +193,32 @@ You can destroy your Terraform infrastructure
 ```
 terraform destroy
 ```
+
+## Creating virsh pool
+
+Terraform v0.11.10 cannot create a storage pool from code.  In this example I will use the virsh for create k8s-pool.
+"/kvm/images" is the path to a file system directory for storing image files. If this directory does not exist, virsh will create it.
+
+```
+virsh pool-define-as k8s-pool dir - - - - "/kvm/images"
+```
+
+Check storage pool 
+
+```
+virsh pool-list --all
+```
+
+Build and start k8s-pool
+
+```
+virsh pool-build k8s-pool
+virsh pool-start k8s-pool
+```
+
+Enable autostart to start the pool after restarting the machine.
+
+```
+virsh pool-autostart k8s-pool
+```
+
